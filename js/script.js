@@ -1,19 +1,18 @@
 $(document).ready(function(){
-
-    var game = new GridGame(30);
+    var game = new GridGame(25);
     game.init();
-
-
 });
+
+
+
 
 function GridGame (numberOfTiles){
 
-
-
+    // Start the game, set up grid
     this.init = function(){
         log('I am GridGame.init()');
         createGrid(numberOfTiles);
-        clickTile();
+        listenForClickOnTile();
 
     };
 
@@ -40,31 +39,35 @@ function GridGame (numberOfTiles){
     };
 
 
-    // set eventlistener on grid
 
-    var clickTile = function(){
+    // When we click on a tile, that tile, the tile above, below and to either
+    // side of the tile we clicked are supposed to change color
+    var listenForClickOnTile = function(){
 
+        // Set one eventlistener to find out if we clicked inside the grid, and
+        // if so, on what element
         var table = document.getElementById("gamePlan");
-
         table.addEventListener('click', function(e){
             var id = e.target.id;
             log('target id '+id);
 
-            log(e.srcElement.tagName == 'TD');
-
-            if(e.srcElement.tagName == 'TD')calculateTilesToChange(id);
+            // just to make sure I'm not changing/setting a class on an element
+            // didn't intend to, I.E. if, it's not a table cell, don't do shit
+            if(e.srcElement.tagName == 'TD') calculateTilesToChange(id);
 
         });
 
 
         // Calculate tiles to change
         function calculateTilesToChange(id){
-            changeClassOnTile(id);
-            var idSplitArray = id.split('_');
 
+            // split class name into two vars, and parse them into integers
+            var idSplitArray = id.split('_');
             var no0 = parseInt(idSplitArray[0]);
             var no1 = parseInt(idSplitArray[1]);
 
+            // Change class on the five tiles
+            changeClassOnTile(id);
             if( (no0 - 1) >= 0)               changeClassOnTile((no0 - 1)+'_'+no1);
             if( (no0 + 1) < numberOfTiles)    changeClassOnTile((no0 + 1)+'_'+no1);
             if( (no1 - 1) >= 0)               changeClassOnTile(no0+'_'+(no1 - 1));
@@ -74,33 +77,12 @@ function GridGame (numberOfTiles){
         }
 
 
-        // Change class on tile
+        // Change class on a single tile
         function changeClassOnTile(id){
             var workingTile = $("#"+id);
             (workingTile.attr('class') == 'greyTile') ? workingTile.attr('class', 'blueTile') : workingTile.attr('class', 'greyTile') ;
         }
-
-//        var myString = "zero one two three four";
-//        var mySplitResult = myString.split(" ");
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
-
-
 }
 
 
@@ -109,6 +91,6 @@ function log(msg){
     if(typeof console != "undefined" && typeof console.log != "undefined"){
         console.log(msg);
     }else{
-// do nuthin
+        // do nuthin
     }
 }

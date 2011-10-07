@@ -200,13 +200,30 @@ a:hover {
 
 /*  *   *   *   *   *   *   *    GAME SPECS    *   *   *   *   *   *   *   *   */
 
+table {
+    margin: 0 auto;
+}
 .greyTile {
     width: 25px;
     height: 25px;
-    background-color: grey;
+    background-color: #ccc;
+    border-radius: 3px;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    -webkit-transform: translate3d(0, 0, 39px);
 }
 .blueTile {
     width: 25px;
     height: 25px;
-    background-color: lightsteelblue;
+    background-color: rgba(200,200,200,0.1);
+    border-radius: 3px;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    -webkit-transform: translate3d(0, 0, 39px);
 }
