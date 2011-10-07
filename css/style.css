@@ -24,41 +24,7 @@ p {
     width: 350px;
     margin: 0 auto;
 }
-#main_nav{
-    background: #07b url('../img/bg/bg_blue.png') repeat fixed;
-    position: fixed;
-    z-index: 101;
-    top: 0px;
-    left: 0px;
-    text-align: center;
-    color: #ccc;
-    text-shadow: 1px 1px 1px #999;
-    width: 100%;
-    padding: 10px 0px;
-}
-#main_nav ul {
-    list-style: none;
-    display: inline;
-}
-#main_nav ul li {
-    display: inline-block;
-    border-right: 1px solid rgba(255,255,255, 0.5);
-    padding-right: 6px;
-}
-#main_nav ul li:last-child {
-    border-right: none;
-}
-#main_nav ul li a {
-    text-transform: capitalize;
-    text-shadow: none;
-    color: #f2f2f2;
-    font-weight: 700;
-    text-decoration: none;
-    display: block;
-}
-#main_nav ul li a:hover {
-    text-decoration: underline;
-}
+
 a.hash_tag {
     margin: 0;
     padding: 0;

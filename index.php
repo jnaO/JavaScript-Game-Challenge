@@ -26,10 +26,15 @@
 (_/
 
             </pre>
+
+
+            <p class="center">
+                <a href="//github.com/jnaO/JavaScript-Game-Challenge" target="_blank">github.com/jnaO/JavaScript-Game-Challenge</a><br />
+            </p>
         </header>
         <article class="bottom wrapper">
             <table id="gamePlan">
-                
+
             </table>
 
         </article>
