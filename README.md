@@ -11,39 +11,14 @@
 JavaScript Game Challenge
 =========================
 
-    Project will supply users with a code-snippet implemented music player to
-        integrate with their web page
+Description
+-----------
 
+A small game of turning tiles.
 
-    Project technologies:
-        • HTML5
-        • JavaScript (and jQuery)
-        • php
+All tiles have two colors, blue and grey, laid out in a square grid. When you click
+one tile in the grid the clicked tile, as well as the tile directly above, beneath
+and to either side of the tile clicked will change color.
 
-    Project main focus:
-        • iOS5 web based music player
-        • Compatible with all major browsers, as long as they are up to date
-            (I.E. no IE6-support... Or 7 or 8)
-        • Compatible with iOS5-devices
-
-    Project will offer simplicity:
-        • download code
-        • implement snippets
-        • copy music to a specified folder
-    and it should work.
-
-    Project will offer "advanced" features such as:
-        • auto play (on/off -default "on")
-        • repeat mode (off/one/all -default "all")
-        • album art
-        • themes/custom styles
-        • optional album/song download
-
-    Project dev site:
-        • http://iplaymusic.jnao.me
-        • http://iplaymusic.jnao.me/mockup.php
-        • github.com/jnaO/iPlayMusic
-
-    Resource:
-        • http://goo.gl/2kJoE
+Turn all tiles of the grid from grey to blue to complete the game.
 
