@@ -16,7 +16,7 @@
 
     </head>
     <body>
-        <article class="top wrapper">
+        <header class="top wrapper">
             <pre class="logo">
                      _____)
             ,   /) /
@@ -26,6 +26,12 @@
 (_/
 
             </pre>
+        </header>
+        <article class="bottom wrapper">
+            <table id="gamePlan">
+                
+            </table>
+
         </article>
     </body>
 </html>
