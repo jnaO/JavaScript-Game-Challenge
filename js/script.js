@@ -62,6 +62,7 @@ function GridGame (){
             // Removes all tiles inside the game. Called in GridGame.init
             destroy:    function(){
                             $("#gamePlan").empty();
+                            $("progress").remove();
                         },
 
 
