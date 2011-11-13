@@ -18,6 +18,10 @@ body {
 p {
     line-height: 1.2em;
 }
+p.desc {
+    width: 500px;
+    margin: 0 auto;
+}
 .logo {
     color: #A00;
     text-shadow: 1px 1px 3px #A00;

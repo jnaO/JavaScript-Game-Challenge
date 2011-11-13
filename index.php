@@ -28,11 +28,21 @@
             </pre>
 
 
-            <p class="center">
-                <a href="//github.com/jnaO/JavaScript-Game-Challenge" target="_blank">github.com/jnaO/JavaScript-Game-Challenge</a><br />
+            <p class="center desc">
+                A small game of turning tiles.<br />
+                <br />
+                <a href="//github.com/jnaO/JavaScript-Game-Challenge" target="_blank">
+                    github.com/jnaO/JavaScript-Game-Challenge</a><br />
+                <br />
+                The tiles have two states, solid white and semitransparent.<br 7>
+                When you click one tile in the grid the clicked tile, as well as the
+                tile directly above, beneath and to either side of the tile clicked
+                will change color.<br />
+                Turn all tiles of the grid from grey to blue to complete the game.
             </p>
         </header>
         <article class="bottom wrapper">
+            <input type="number" id="gridSize" /><button id="startGame">start game</button>
             <table id="gamePlan">
 
             </table>
