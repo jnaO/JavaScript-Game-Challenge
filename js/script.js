@@ -31,9 +31,9 @@ function GridGame (){
     var Grid = {
 
             // Number of tiles on the grid. Is set in GridGame.init()
-            numTiles:   12,
+            numTiles:   0,
 
-
+            // The grid
             table:      document.getElementById("gamePlan"),
 
 
@@ -60,15 +60,14 @@ function GridGame (){
 
 
             // Removes all tiles inside the game. Called in GridGame.init
-            // TODO Find a way to remove eventlistener och destroy
             destroy:    function(){
                             $("#gamePlan").empty();
-                            Grid.table.removeEventListener('click');
                         },
 
 
-            //
+            // all the tiles and what we do with them
             tiles:       {
+
                     // Calculate tiles to change
                     calculateChange:     function (id){
 
@@ -105,35 +104,55 @@ function GridGame (){
                                         },
                     clickListener:      function(){
 
+                                            if(!Grid.tiles.listenerIsSet){
 
+                                                Grid.tiles.listenerIsSet = true;
 
-                                            Grid.table.addEventListener('click', function(e){
-                                                log(':::::::: clicked ::::::::::');
-                                                var id = e.target.id;
-                                                log('target id '+id);
+                                                Grid.table.addEventListener('click', function(e){
+                                                    log(':::::::: clicked ::::::::::');
+                                                    var id = e.target.id;
+                                                    log('target id '+id);
 
-                                                // just to make sure I'm not changing/setting a class on an element
-                                                // didn't intend to, I.E. if, it's not a table cell, don't do nothing
-                                                //
-                                                // firefox compatability
-                                                var clickTag = '';
-                                                try {
-                                                    clickTag = e.srcElement.tagName;
-                                                } catch(er) {
-                                                    try{
-                                                        log(e);
-                                                        clickTag = e.explicitOriginalTarget.nodeName;
-                                                    } catch (er) {
+                                                    // just to make sure I'm not changing/setting a class on an element
+                                                    // didn't intend to, I.E. if, it's not a table cell, don't do nothing
+                                                    //
+                                                    // firefox compatability
+                                                    var clickTag = '';
+                                                    try {
+                                                        clickTag = e.srcElement.tagName;
+                                                    } catch(er) {
+                                                        try{
+                                                            log(e);
+                                                            clickTag = e.explicitOriginalTarget.nodeName;
+                                                        } catch (er) {
 
+                                                        }
                                                     }
-                                                }
-                                                log(e)
-                                                log('clickTag ' + clickTag);
-                                                if(clickTag == 'TD') Grid.tiles.calculateChange(id);
+                                                    log(e)
+                                                    log('clickTag ' + clickTag);
+                                                    if(clickTag == 'TD') Grid.tiles.calculateChange(id);
+                                                    Progress.update();
 
-                                            }); // <- end table.addEventListener('click')
+                                                }); // <- end table.addEventListener('click')
+                                            }
 
+                                        },
+
+                    // Boolean to determine if the eventlistener has been set already. Used by clickListener.
+                    listenerIsSet:      false,
+
+
+                    count:              function(){
+                                            var nodeType = document.getElementsByTagName('td'),
+                                                greyNum = 0,
+                                                blueNum = 0;
+                                            for(var tilesI = 0; tilesI < nodeType.length; tilesI++){
+                                                ( nodeType[tilesI].getAttribute('class') == 'greyTile' ) ? greyNum++ : blueNum++ ;
+                                            }
+                                            return {grey: greyNum, blue: blueNum};
                                         }
+
+
                 } // <- end Grid.tiles
 
 
@@ -149,55 +168,28 @@ function GridGame (){
          * Progress
          **/
         Progress = {
+
+            max: 0,
+
+            bar: undefined,
+
             create:     function(){
 
-                            var tot = Grid.numTiles * Grid.numTiles;
-                            Progress.bar = $("<progress value='0' max='" + tot + "' />")
-                            $('article').prepend(Progress.bar);
+                            Progress.max = Grid.numTiles * Grid.numTiles;
+                            Progress.bar = $("<progress value='0' max='" + Progress.max + "' />")
+                            Progress.bar.css('width', $('#gamePlan').width());
+                            $('article').append(Progress.bar);
                         }, //<- end grid.progress.create
             update:     function(){
+                            log('update progressbar');
+                            var t = Grid.tiles.count();
+                            log(t.grey);
+                            log(Progress.bar);
+                            Progress.bar.attr('value', t.blue);
                         }
-        },
+        };
 
 
-
-
-    // When we click on a tile, that tile, the tile above, below and to either
-    // side of the tile we clicked are supposed to change color
-        listenForClickOnTile = function(){
-            log('I am listenForClickOnTile');
-
-            // Set one eventlistener to find out if we clicked inside the grid, and
-            // if so, on what element
-
-
-
-
-
-
-        /**
-         * Change class on a single tile
-         * @param id String
-         *      The id of the element on wich to change class
-         */
-        function changeClassOnTile(id){
-            var workingTile = $("#"+id);
-            (workingTile.attr('class') == 'greyTile') ? workingTile.attr('class', 'blueTile') : workingTile.attr('class', 'greyTile') ;
-        }
-
-        function countTiles() {
-            var nodeType = document.getElementsByTagName('td');
-            var greyNum = 0;
-            var blueNum = 0;
-            for(var tilesI = 0; tilesI < nodeType.length; tilesI++){
-                ( nodeType[tilesI].getAttribute('class') == 'greyTile' ) ? greyNum++ : blueNum++ ;
-            }
-            log('I am countTiles, here\'s what I have to say about life:');
-            log('bluenum: '+blueNum+'  greynum: '+greyNum);
-
-            return greyNum;
-        }
-    }; // <- end listenForClickOnTile()
 
 
     // Start the game, set up grid
@@ -205,12 +197,12 @@ function GridGame (){
 
         log('I am GridGame.init()');
 
-        Grid.numTiles = parseInt($("#gridSize").val(), 10);
         Grid.destroy();
+        Grid.numTiles = parseInt($("#gridSize").val(), 10);
         Grid.create();
         Grid.tiles.clickListener();
+        Progress.create();
 
-        listenForClickOnTile();
 
     };// <- end init()
 

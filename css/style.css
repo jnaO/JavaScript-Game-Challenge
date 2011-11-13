@@ -83,9 +83,8 @@ a.hash_tag {
     z-index: 100;
 }
 input {
-    padding: 10px 20px;
+    padding: 5px 20px;
     border-radius: 25px;
-    width: 400px;
     margin: 20px 0;
     background: #f9f9f9 url('../img/bg/bg_darkwhite.png') repeat fixed;
     color: #333;
@@ -172,6 +171,12 @@ a:hover {
 
 table {
     margin: 0 auto;
+}
+
+
+progress {
+    display: block;
+    margin: 20px auto;
 }
 .greyTile {
     width: 25px;

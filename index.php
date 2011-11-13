@@ -42,7 +42,9 @@
             </p>
         </header>
         <article class="bottom wrapper">
-            <input type="number" id="gridSize" /><button id="startGame">start game</button>
+            <header class="center">
+                <input type="number" id="gridSize" /><button id="startGame">start game</button>
+            </header>
             <table id="gamePlan">
 
             </table>
