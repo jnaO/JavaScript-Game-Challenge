@@ -5,6 +5,10 @@ $(document).ready(function(){
         log($("#gridSize").val());
         game.init();
     });
+    if (window.navigator.standalone) {
+        // fullscreen mode
+        $('.top').remove();
+    }
 
 });
 
@@ -62,7 +66,7 @@ function GridGame (){
             // Removes all tiles inside the game. Called in GridGame.init
             destroy:    function(){
                             $("#gamePlan").empty();
-                            $("progress").remove();
+                            $("#progressBar").remove();
                         },
 
 
@@ -170,23 +174,42 @@ function GridGame (){
          **/
         Progress = {
 
-            max: 0,
+            max:        0,
 
-            bar: undefined,
+            cleared:    0,
+
+            width:      30,
+
+            bar:        undefined,
 
             create:     function(){
 
                             Progress.max = Grid.numTiles * Grid.numTiles;
-                            Progress.bar = $("<progress value='0' max='" + Progress.max + "' />")
-                            Progress.bar.css('width', $('#gamePlan').width());
+                            Progress.width = $("#gamePlan").width();
+                            Progress.bar = $("<canvas id='progressBar' width='" + Progress.width + "' height='5' />")
                             $('article').append(Progress.bar);
                         }, //<- end grid.progress.create
+
+
             update:     function(){
-                            log('update progressbar');
+
                             var t = Grid.tiles.count();
-                            log(t.grey);
-                            log(Progress.bar);
-                            Progress.bar.attr('value', t.blue);
+                            Progress.cleared = t.blue;
+
+                            if(Progress.bar){
+                                var ctx = document.getElementById('progressBar').getContext("2d"),
+
+                                fWidth = (Progress.cleared / Progress.max) * (Progress.width);
+
+                                //clear canvas before painting
+                                ctx.clearRect(0, 0, Progress.width, 150);
+                                ctx.fillStyle = "rgb(245,245,245)";
+
+                                if (fWidth > 0) {
+                                    ctx.fillRect(0, 0, fWidth, 150);
+                                }
+                            }
+
                         }
         };
 

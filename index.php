@@ -7,6 +7,11 @@
         <meta name="author" content="jnaO" />
 
         <title>gridGame</title>
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+
         <link href='//fonts.googleapis.com/css?family=Josefin+Sans:400,600,700|Josefin+Slab:700&amp;v2' rel='stylesheet' type='text/css' />
         <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 
@@ -31,9 +36,6 @@
             <p class="center desc">
                 A small game of turning tiles.<br />
                 <br />
-                <a href="//github.com/jnaO/JavaScript-Game-Challenge" target="_blank">
-                    github.com/jnaO/JavaScript-Game-Challenge</a><br />
-                <br />
                 The tiles have two states, solid white and semitransparent.<br 7>
                 When you click one tile in the grid the clicked tile, as well as the
                 tile directly above, beneath and to either side of the tile clicked
@@ -43,7 +45,7 @@
         </header>
         <article class="bottom wrapper">
             <header class="center">
-                <input type="number" id="gridSize" /><button id="startGame">start game</button>
+                <input class="center" type="number" id="gridSize" placeholder="#" /><button id="startGame">start game</button>
             </header>
             <table id="gamePlan">
 
