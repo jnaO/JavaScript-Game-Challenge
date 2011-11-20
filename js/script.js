@@ -1,9 +1,3 @@
-function log(arg){
-	if((console !== undefined) && (console.log !== undefined)) {
-		consloe.log(arg);
-	}
-}
-
 $(document).ready(function(){
 	
 	
@@ -23,20 +17,19 @@ $(document).ready(function(){
     var game = new GridGame();
 
     $("#startGame").click(function(){
-        log($("#gridSize").val());
-        game.init();
+	    var ttt = parseInt($("#gridSize").val());
+	    
+	    if(ttt === ttt) {
+	        game.init();
+	    }
     });
+    
+    
     if (window.navigator.standalone) {
         // fullscreen mode
         $('.top').remove();
     }
-    
-    $('#textshadow > [type=range]').change(function(){
-	    var newP = $("p");
-	    newP.html(tools.changeTextShadow(".shadow"));
-	    $("#textshadow").append(newP);
-	    
-    });
+
 
 });
 
@@ -53,6 +46,17 @@ $(document).ready(function(){
 function GridGame (){
 
 
+
+
+
+
+
+/** === * === * === * === * === * === * === * === * === * === * === * === * === * === * === * === * === * === * === * === **/
+/** === * === * === * === * === |                                                           | === * === * === * === * === **/
+/** === * === * === * === * === |                            Grid                           | === * === * === * === * === **/
+/** === * === * === * === * === |                                                           | === * === * === * === * === **/
+/** === * === * === * === * === * === * === * === * === * === * === * === * === * === * === * === * === * === * === * === **/
+
     /**
      * Grid creates and maintain the actual grid
      *
@@ -61,28 +65,29 @@ function GridGame (){
      **/
     var Grid = {
 
-            // Number of tiles on the grid. Is set in GridGame.init()
-            numTiles:   0,
+            /**
+             * The grid
+             */
+/* Grid. */	table:      document.getElementById("gamePlan"),
 
-            // The grid
-            table:      document.getElementById("gamePlan"),
 
+            /**
+             * Creates a grid that is 'tiles.total' by 'tiles.total'
+             */
+/* Grid. */	create:     function(){
 
-            // Creates a grid that is 'numTiles' by 'numTiles'
-            create:     function(){
-
-                            log('I am a grid, with '+this.numTiles+' tiles square');
+                            log('I am a grid, with '+this.tiles.total+' tiles square');
 
                             // Set up the grid, first append the row, and then append the cells into
                             // the row. Repeat until done.
 
                             // Create the rows, append to table
-                            for(var i = 0; i < this.numTiles; i++){
+                            for(var i = 0; i < this.tiles.total; i++){
                                 var row = $("<tr id='"+i+"' />")
                                 $("#gamePlan").append(row);
 
                                 // Create the cells, append to current row
-                                for(var ci = 0; ci < this.numTiles; ci++) { // tiles
+                                for(var ci = 0; ci < this.tiles.total; ci++) { // tiles
                                     var tile = $("<td id='"+i+"_"+ci+"' class='greyTile' />");
                                     $("#"+i).append(tile);
                                 }
@@ -90,61 +95,72 @@ function GridGame (){
                         }, // <- end create
 
 
-            // Removes all tiles inside the game. Called in GridGame.init
-            destroy:    function(){
-                            $("#gamePlan").empty();
-                            $("#progressBar").remove();
-                        },
+            /**
+             * all the tiles and what we do with them
+             */
+/* Grid. */	tiles:       {
 
+		            /**
+		             * Number of tiles on the grid. Is set in GridGame.init()
+		             */
+/* Grid.tiles. */	total:   0,
 
-            // all the tiles and what we do with them
-            tiles:       {
+                    /**
+                     * Calculate tiles to change
+                     */
+/* Grid.tiles. */	calculateChange:     function (id){
 
-                    // Calculate tiles to change
-                    calculateChange:     function (id){
-
-                                            // Split class name into two vars, and parse them into integers
+                                            /**
+                                             * Split class name into two vars, and parse them into integers
+                                             */
                                             var idSplitArray = id.split('_'),
                                                 no0 = parseInt(idSplitArray[0]),
                                                 no1 = parseInt(idSplitArray[1]);
 
-                                            // Calculate and run changeClassOnTile if the tile exists
+                                            /**
+                                             * Calculate and run changeClassOnTile if the tile exists
+                                             */
                                             Grid.tiles.changeTile(id);
-                                            if( (no0 - 1) >= 0)               Grid.tiles.changeTile((no0 - 1)+'_'+no1);
-                                            if( (no0 + 1) < Grid.numTiles)    Grid.tiles.changeTile((no0 + 1)+'_'+no1);
-                                            if( (no1 - 1) >= 0)               Grid.tiles.changeTile(no0+'_'+(no1 - 1));
-                                            if( (no1 + 1) < Grid.numTiles)    Grid.tiles.changeTile(no0+'_'+(no1 + 1));
-//                                            countTiles();
+                                            if( (no0 - 1) >= 0)               	Grid.tiles.changeTile((no0 - 1)+'_'+no1);
+                                            if( (no0 + 1) < Grid.tiles.total)   Grid.tiles.changeTile((no0 + 1)+'_'+no1);
+                                            if( (no1 - 1) >= 0)               	Grid.tiles.changeTile(no0+'_'+(no1 - 1));
+                                            if( (no1 + 1) < Grid.tiles.total)   Grid.tiles.changeTile(no0+'_'+(no1 + 1));
+                                            
+                                            Grid.tiles.tilesTurned();
+                                            
 
                                         }, // <- end Grid.tiles.calculateChange(id)
+
+
                     /**
                      * Change class on a single tile
                      * @param id String
                      *      The id of the element on wich to change class
                      */
-                    changeTile:         function(id){
-                                            log(id)
+/* Grid.tiles. */	changeTile:         function(id){
+
                                             var workingTile = $("#"+id);
 
                                             if (workingTile.attr('class') === 'greyTile') {
-                                                log('true' + workingTile.attr('class'));
                                                 workingTile.attr('class', 'blueTile');
                                             } else {
-                                                log('false' + workingTile.attr('class'));
                                                 workingTile.attr('class', 'greyTile');
                                             }
-                                        },
-                    clickListener:      function(){
+                                        }, // <- end changeTile()
+
+
+										/**
+						                 * Set up an eventlistener on the game grid, if one is not already dispatched
+						                 */
+/* Grid.tiles. */	clickListener:      function(){
 
                                             if(!Grid.tiles.listenerIsSet){
-
                                                 Grid.tiles.listenerIsSet = true;
-
                                                 Grid.table.addEventListener('click', function(e){
                                                     log(':::::::: clicked ::::::::::');
+                                                    Progress.clicks++;
+                                                    log('number of clicks so far: ' + Progress.clicks);
                                                     var id = e.target.id;
-                                                    log('target id '+id);
-
                                                     // just to make sure I'm not changing/setting a class on an element
                                                     // didn't intend to, I.E. if, it's not a table cell, don't do nothing
                                                     //
@@ -154,35 +170,53 @@ function GridGame (){
                                                         clickTag = e.srcElement.tagName;
                                                     } catch(er) {
                                                         try{
-                                                            log(e);
                                                             clickTag = e.explicitOriginalTarget.nodeName;
                                                         } catch (er) {
 
                                                         }
                                                     }
-                                                    log(e)
-                                                    log('clickTag ' + clickTag);
+
                                                     if(clickTag == 'TD') Grid.tiles.calculateChange(id);
                                                     Progress.update();
-
                                                 }); // <- end table.addEventListener('click')
+                                            } // <- end if(!Grid.tiles.listenerIsSet){}
+
+                                        }, // <- end clickListener()
+
+
+                    /**
+                     * Boolean to determine if the eventlistener has been set already. Used by clickListener.
+                     */
+/* Grid.tiles. */	listenerIsSet:      false,
+
+
+
+					/**
+					 * should really be just to count items in tilesTurned
+					 */
+/* Grid.tiles. */	count:              function(){
+                                            var numberOfTilesTurned = Grid.tiles.tilesTurned();
+                                            
+                                            if(numberOfTilesTurned === Progress.max) {
+	                                            Game.done();
                                             }
+                                            
+                                            return numberOfTilesTurned;
+                                        }, // <- end Grid.tiles.count()
 
-                                        },
-
-                    // Boolean to determine if the eventlistener has been set already. Used by clickListener.
-                    listenerIsSet:      false,
-
-
-                    count:              function(){
-                                            var nodeType = document.getElementsByTagName('td'),
-                                                greyNum = 0,
-                                                blueNum = 0;
-                                            for(var tilesI = 0; tilesI < nodeType.length; tilesI++){
-                                                ( nodeType[tilesI].getAttribute('class') == 'greyTile' ) ? greyNum++ : blueNum++ ;
+/* Grid.tiles. */	tilesTurned:		function(){
+											
+											var blueTileArray = [],
+                                            	blueTiles
+											
+                                            blueTiles = $(".blueTile");
+                                            
+                                            for(var i = 0; i < blueTiles.length; i++) {
+	                                            blueTileArray.push($(blueTiles[i]).attr('id'));
                                             }
-                                            return {grey: greyNum, blue: blueNum};
-                                        }
+                                            localStorage.setItem('blueTiles', blueTileArray);
+                                            return localStorage.getItem('blueTiles').split(',').length;
+										}
 
 
                 } // <- end Grid.tiles
@@ -196,39 +230,51 @@ function GridGame (){
 
 
 
-        /**
-         * Progress
-         **/
+/** === * === * === * === * === * === * === * === * === * === * === * === * === * === * === * === * === * === * === * === **/
+/** === * === * === * === * === |                                                           | === * === * === * === * === **/
+/** === * === * === * === * === |                          Progress                         | === * === * === * === * === **/
+/** === * === * === * === * === |                                                           | === * === * === * === * === **/
+/** === * === * === * === * === * === * === * === * === * === * === * === * === * === * === * === * === * === * === * === **/
+
         Progress = {
 
-            max:        0,
+/* Progress. */	max:	0,
 
-            cleared:    0,
+/* Progress. */	cleared:	0,
 
-            width:      30,
+/* Progress. */	width:	30,
+            
+/* Progress. */	clicks:	(!!parseInt(localStorage.getItem('currentGameClicks'), 10)) ? parseInt(localStorage.getItem('currentGameClicks'), 10): 0, 
 
-            bar:        undefined,
+/* Progress. */	bar:	undefined,
 
-            create:     function(){
-
-                            Progress.max = Grid.numTiles * Grid.numTiles;
+						/**
+						 * Creates a progressbar
+						 */
+/* Progress. */	create:	function(){
+							localStorage.setItem('currentGameClicks', 0);
+							Progress.clicks = 0;
+                            Progress.max = Grid.tiles.total * Grid.tiles.total;
                             Progress.width = $("#gamePlan").width();
                             Progress.bar = $("<canvas id='progressBar' width='" + Progress.width + "' height='5' />")
                             $('article').append(Progress.bar);
-                        }, //<- end grid.progress.create
+                        }, //<- end grid.progress.create();
 
+						/**
+						 * Updates the progressbar to match current tile count
+						 */
+/* Progress. */	update:	function(){
 
-            update:     function(){
-
-                            var t = Grid.tiles.count();
-                            Progress.cleared = t.blue;
+                            Progress.cleared = Grid.tiles.count();
 
                             if(Progress.bar){
                                 var ctx = document.getElementById('progressBar').getContext("2d"),
 
                                 fWidth = (Progress.cleared / Progress.max) * (Progress.width);
 
-                                //clear canvas before painting
+                                /**
+                                 * Clear canvas before painting
+                                 */
                                 ctx.clearRect(0, 0, Progress.width, 150);
                                 ctx.fillStyle = "rgb(245,245,245)";
 
@@ -236,23 +282,82 @@ function GridGame (){
                                     ctx.fillRect(0, 0, fWidth, 150);
                                 }
                             }
-
-                        }
-        };
-
+                        } // <- end Progressbar.update()
+        }, // <- end Progressbar{}
 
 
 
-    // Start the game, set up grid
+
+
+
+/** === * === * === * === * === * === * === * === * === * === * === * === * === * === * === * === * === * === * === * === **/
+/** === * === * === * === * === |                                                           | === * === * === * === * === **/
+/** === * === * === * === * === |                            Game                           | === * === * === * === * === **/
+/** === * === * === * === * === |                                                           | === * === * === * === * === **/
+/** === * === * === * === * === * === * === * === * === * === * === * === * === * === * === * === * === * === * === * === **/
+
+		/**
+		 * Game creates and destroys the game, indicate if a game is in progress and so on 
+		 */
+		Game		= {
+
+            /**
+             * Removes all tiles inside the game, as well as the progressbar.
+             */
+/* Game. */	destroy:    function(){
+	            			if(Game.inProgress){
+		            			log('destroy game');
+	                            $("#gamePlan").empty();
+	                            $("#progressBar").remove();
+					            localStorage.setItem('inProgress', 'false');
+	                        }
+                        },
+
+
+			/**
+			 * Indicates if a game is in progress
+			 */
+/* Game. */	inProgress:	(localStorage.getItem('inProgress') === "true"),
+            
+            /**
+             * Start creates all elements nedded to play a new game
+             */
+/* Game. */	create:		function(){
+		        Grid.tiles.total = (parseInt($("#gridSize").val(), 10) != $("#gridSize").val()) ? 4 : parseInt($("#gridSize").val(), 10);
+		        Grid.tiles.clickListener();
+	            Game.destroy();
+	            Grid.create();
+	            Progress.create();
+	            localStorage.setItem('inProgress', 'true');
+	            localStorage.setItem('currentGameClicks', 0);
+            },
+            
+            /**
+             * Gets all the nessesary data out of localStorage, and set up game according to named data
+             */
+/* Game. */	resume:		function(){
+							
+						},
+/* Game. */	done:		function(){
+							setTimeout(function(){
+								var cng = confirm('Hoooraaayyy! \\o/\nDo you want to play a new game');
+								if(cng){
+									Game.create();
+								}
+							}, 200)
+						}						
+        }; // <- end Game{}
+
+
+
+
+    /**
+     * Start the game, set up grid
+     */
     this.init = function(){
 
         log('I am GridGame.init()');
-
-        Grid.destroy();
-        Grid.numTiles = parseInt($("#gridSize").val(), 10);
-        Grid.create();
-        Grid.tiles.clickListener();
-        Progress.create();
+		Game.create();
 
 
     };// <- end init()

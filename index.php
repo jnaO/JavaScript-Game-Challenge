@@ -30,43 +30,15 @@
     <body>
     <nav>
     	<ul id='main_menu' class="clearfix">
-    		<li class="shadow">&#42;</li>
+    		<li id="restart" class="shadow">&#42;</li>
     		<li><input id="gridSize" type="number" placeholder="#" /></li>
-    		<li class="shadow" id="startGame">&#81;</li>
-    		<li class="shadow">&#35;</li>
-    		<li class="shadow">&#38;</li>
+    		<li id="startGame" class="shadow">&#81;</li>
+    		<li id="donate" class="shadow">&#35;</li>
+    		<li id="fullscreen" class="shadow">&#38;</li>
     	</ul>
     	<span>&nbsp;</span>
     </nav>
-	<section id="textshadow" class="hidden">
-		<h1>Text-shadow</h1>
-		<label>
-			Horizontal
-		</label>
-    	<input id="sideAdjust" type="range" min="0" max="200" step="1" value="100" />
-		<label>
-			Vertical
-		</label>
-    	<input id="topAdjust" type="range" min="0" max="200" step="1" value="100" />
-		<label>
-			Blur
-		</label>
-        <input id="blurAdjust" type="range" min="0" max="50" step="1" value="0" /><br />
-		<br />
 
-		<label>
-			Hue
-		</label>
-    	<input id="hueAdjust" type="range" min="0" max="360" step="1" value="0" />
-		<label>
-			Saturation
-		</label>
-    	<input id="saturationAdjust" type="range" min="0" max="100" step="1" value="0" />
-		<label>
-			Brightness
-		</label>
-        <input id="brightnessAdjust" type="range" min="0" max="100" step="1" value="0" />
-    </section>
         <header class="top wrapper">
             <pre class="logo">
                      _____)
