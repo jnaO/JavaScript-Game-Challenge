@@ -38,7 +38,7 @@
     	</ul>
     	<span>&nbsp;</span>
     </nav>
-	<section id="textshadow" class="">
+	<section id="textshadow" class="hidden">
 		<h1>Text-shadow</h1>
 		<label>
 			Horizontal

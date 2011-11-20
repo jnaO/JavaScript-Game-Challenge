@@ -32,7 +32,10 @@ $(document).ready(function(){
     }
     
     $('#textshadow > [type=range]').change(function(){
-	    tools.log(tools.changeTextShadow(".shadow"));
+	    var newP = $("p");
+	    newP.html(tools.changeTextShadow(".shadow"));
+	    $("#textshadow").append(newP);
+	    
     });
 
 });

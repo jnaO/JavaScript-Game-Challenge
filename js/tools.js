@@ -35,8 +35,8 @@ var tools = {
 									 * 		"color: hsl(XX, XX%, XX%)"
 									 */
 		changeTextColor	: 			function(elem){
-										var hue		= $('#textHueAdjust').val()
-										  , sat		= $('#textSaturationAdjust').val()
+										var hue		= $('#hueAdjust').val()
+										  , sat		= $('#saturationAdjust').val()
 										  , bright	= $('#brightnessAdjust').val();
 
 										$(elem).css("color", 'hsl(' + hue + ', ' + sat + '%, ' + bright + '%)');
