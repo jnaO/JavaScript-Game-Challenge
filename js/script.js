@@ -1,4 +1,25 @@
+function log(arg){
+	if((console !== undefined) && (console.log !== undefined)) {
+		consloe.log(arg);
+	}
+}
+
 $(document).ready(function(){
+	
+	
+	//create a new instance of WKShake.
+	var myShakeEvent = new WKShake();
+
+	//start listening for shake event. 
+	//you can also use stop() to stop listening.
+	myShakeEvent.start();
+	
+	//define a custom method to fire when shake occurs.
+	myShakeEvent.shakeEventDidOccur = function() {
+	
+		location.reload(true);
+
+	}
     var game = new GridGame();
 
     $("#startGame").click(function(){
@@ -9,9 +30,12 @@ $(document).ready(function(){
         // fullscreen mode
         $('.top').remove();
     }
+    
+    $('#textshadow > [type=range]').change(function(){
+	    tools.log(tools.changeTextShadow(".shadow"));
+    });
 
 });
-
 
 
 
