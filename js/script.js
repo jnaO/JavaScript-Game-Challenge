@@ -16,6 +16,10 @@ $(document).ready(function(){
 	    }
     });
     
+	$("#restart").click(function(){
+		game.restart();
+    });
+    
     
     if (window.navigator.standalone) {
 		// Do stuff in iPhone standalone mode
@@ -348,8 +352,9 @@ function GridGame (){
              * Gets all the nessesary data out of localStorage, and set up game according to named data
              */
 /* Game. */	restart:		function(){
-							
-						},
+								$(".blueTile").addClass('greyTile');
+								$(".blueTile").removeClass('blueTile');
+							},
 
 /* Game. */	done:		function(){
 							setTimeout(function(){
@@ -376,7 +381,9 @@ function GridGame (){
 
     };// <- end init()
 
-
+	this.restart = function() {
+		Game.restart();
+	}
 
 
 }
