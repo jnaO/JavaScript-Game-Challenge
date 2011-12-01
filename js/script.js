@@ -8,7 +8,11 @@ $(document).ready(function(){
     var game = new GridGame();
 
     $("#startGame").click(function(){
-	    $(".top").remove();
+	    if (localStorage.getItem('invisible') === "0") {
+		    $(".top").addClass('invisible');
+		    localStorage.setItem('invisible', 1);
+	    }
+	    
 	    var ttt = parseInt($("#gridSize").val());
 
 	    if(ttt === ttt) {
@@ -20,9 +24,24 @@ $(document).ready(function(){
 		game.restart();
     });
     
+    $(".top").click(function(){
+	    $(".top").addClass('invisible');
+	    localStorage.setItem('invisible', 1)
+    });
+    $(".info").click(function(){
+	    var t = parseInt(localStorage.getItem('invisible')) || 0;
+	    (t === 0) ? $(".top").addClass('invisible') : $(".top").removeClass('invisible');
+		t = (t === 0) ? 1 : 0;
+		localStorage.setItem('invisible', t);
+	    log('info :: ' + t);
+    });
+    if (localStorage.getItem('invisible') === "1") {
+	    $(".top").addClass('invisible');
+    }
     
     if (window.navigator.standalone) {
 		// Do stuff in iPhone standalone mode
+		$(".top").addClass('standAlone');
 	}
 
 

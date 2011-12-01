@@ -32,6 +32,7 @@
     	<ul id='main_menu' class="clearfix">
     		<li><input id="gridSize" type="number" placeholder="#" /></li>
     		<li id="startGame" class="shadow">1</li>
+    		<li id="startGame" class="info">I</li>
     		<li id="restart" class="shadow">2</li>
     		<!-- li id="donate" class="shadow">&#35;</li>
     		<li id="fullscreen" class="shadow">&#38;</li -->
@@ -59,7 +60,8 @@
                 <br />
                 This is a game that is available as a webapp for iPhone, to install, press the center button at the bottom and choose "Save to homescreen" or equivalent..<br />
                 <br />
-                Do notice that this game is in a state of pre-alfa release.
+                Do notice that this game is in a state of pre-alfa release.<br />
+                <a href="mailto:jnao@jnao.me">mail me</a>
             </p>
         </header>
         <article class="bottom wrapper">
