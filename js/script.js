@@ -1,24 +1,16 @@
 $(document).ready(function(){
-	
-	
-	//create a new instance of WKShake.
 	var myShakeEvent = new WKShake();
 
-	//start listening for shake event. 
-	//you can also use stop() to stop listening.
 	myShakeEvent.start();
-	
-	//define a custom method to fire when shake occurs.
 	myShakeEvent.shakeEventDidOccur = function() {
-	
 		location.reload(true);
-
 	}
     var game = new GridGame();
 
     $("#startGame").click(function(){
+	    $(".top").remove();
 	    var ttt = parseInt($("#gridSize").val());
-	    
+
 	    if(ttt === ttt) {
 	        game.init();
 	    }
@@ -26,9 +18,8 @@ $(document).ready(function(){
     
     
     if (window.navigator.standalone) {
-        // fullscreen mode
-        $('.top').remove();
-    }
+		// Do stuff in iPhone standalone mode
+	}
 
 
 });
@@ -323,13 +314,27 @@ function GridGame (){
              * Start creates all elements nedded to play a new game
              */
 /* Game. */	create:		function(){
-		        Grid.tiles.total = (parseInt($("#gridSize").val(), 10) != $("#gridSize").val()) ? 4 : parseInt($("#gridSize").val(), 10);
-		        Grid.tiles.clickListener();
-	            Game.destroy();
-	            Grid.create();
-	            Progress.create();
-	            localStorage.setItem('inProgress', 'true');
-	            localStorage.setItem('currentGameClicks', 0);
+				var t;
+				Game.destroy();
+				
+				if (parseInt($("#gridSize").val(), 10) != $("#gridSize").val()) {
+					t = 4;
+				} else {
+					t = parseInt($("#gridSize").val(), 10);
+					if (t > 10 || t < 3) {
+						return alert('number of tiles can not be less than 3 * 3, or greater than 10 * 10');
+					}
+					
+				}
+				Grid.tiles.total = t;
+				
+				Grid.tiles.clickListener();
+				Grid.create();
+				
+				Progress.create();
+				
+				localStorage.setItem('inProgress', 'true');
+				localStorage.setItem('currentGameClicks', 0);
             },
             
             /**
@@ -338,11 +343,20 @@ function GridGame (){
 /* Game. */	resume:		function(){
 							
 						},
+
+            /**
+             * Gets all the nessesary data out of localStorage, and set up game according to named data
+             */
+/* Game. */	restart:		function(){
+							
+						},
+
 /* Game. */	done:		function(){
 							setTimeout(function(){
 								var cng = confirm('Hoooraaayyy! \\o/\nDo you want to play a new game');
 								if(cng){
 									Game.create();
+									
 								}
 							}, 200)
 						}						

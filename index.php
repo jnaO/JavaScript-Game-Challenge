@@ -30,11 +30,11 @@
     <body>
     <nav>
     	<ul id='main_menu' class="clearfix">
-    		<li id="restart" class="shadow">&#42;</li>
     		<li><input id="gridSize" type="number" placeholder="#" /></li>
-    		<li id="startGame" class="shadow">&#81;</li>
-    		<li id="donate" class="shadow">&#35;</li>
-    		<li id="fullscreen" class="shadow">&#38;</li>
+    		<li id="startGame" class="shadow">1</li>
+    		<li id="restart" class="shadow">2</li>
+    		<!-- li id="donate" class="shadow">&#35;</li>
+    		<li id="fullscreen" class="shadow">&#38;</li -->
     	</ul>
     	<span>&nbsp;</span>
     </nav>
@@ -54,11 +54,9 @@
             <p class="center desc">
                 A small game of turning tiles.<br />
                 <br />
-                The tiles have two states, solid white and semitransparent.<br 7>
-                When you click one tile in the grid the clicked tile, as well as the
-                tile directly above, beneath and to either side of the tile clicked
-                will change color.<br />
-                Turn all tiles of the grid from grey to blue to complete the game.
+                Turn all tiles of the grid from grey to blue to complete the game.<br />
+                Start a new game by enter a numberbetween 3 and 10 and press play on tape.<br />
+                Do notice that this game is in a state of pre-alfa release.
             </p>
         </header>
         <article class="bottom wrapper">
