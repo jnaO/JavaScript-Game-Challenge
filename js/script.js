@@ -42,6 +42,7 @@ $(document).ready(function(){
     if (window.navigator.standalone) {
 		// Do stuff in iPhone standalone mode
 		$(".top").addClass('standAlone');
+		$("#web_only").remove();
 	}
 
 

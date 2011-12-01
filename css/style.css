@@ -101,9 +101,8 @@ input[type=range] {
 	display: none;
 }
 .standAlone {
-	min-height: 640px;
 	position: absolute;
-	top: 0;
+	bottom: 0;
 	left: 0;
 }
 .bottom {
@@ -114,9 +113,9 @@ nav {
 	background: #f9f9f9 url('../img/bg/bg_darkwhite.png') repeat fixed;
 	border-bottom: 1px solid hsl(202, 100%, 37%);
 	margin-bottom: 10px;
-	height: 33px;
+	height: 30px;
 	box-shadow: 0px 1px 3px 0px #37b;
-	padding: 3px 0 0;
+	padding: 5px 0 0;
 }
 #main_menu > li {
 	font: 25px/25px Pictos;
@@ -129,16 +128,19 @@ nav {
 }
 #main_menu > li:last-child {
 	float: right;
+	text-align: right;
+	padding-right: 5px
 }
 
 #main_menu input {
 	display: inline-block;
+	border-radius: 0px;
 	background: #07b;
 	color: hsl(210, 57%, 100%);
 	text-shadow: 1px 1px 1px hsl(0, 0%, 67%);
 	box-shadow: 2px 4px 8px -3px rgba(0,0,0,0.2);
 	width: 50%;
-	margin: 1px auto 0;
+	margin: 0 auto;
 	text-align: center;
 	font: 16px/14px "Josefin Sans";
 	border: 0px ridge hsl(210, 57%, 47%);

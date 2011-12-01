@@ -8,7 +8,14 @@
 
         <title>gridGame</title>
         
-        <link rel="apple-touch-startup-image" href="img/app/splash.jpg" />
+		<!-- startup image for web apps - iPad - portrait (768x1004) -->
+		<link rel="apple-touch-startup-image" href="img/app/splash-large.jpg" media="screen and (min-device-width: 760px) and (max-device-width: 1024px) and (orientation:portrait)" />
+		
+		<!-- startup image for web apps (320x460) -->
+		<link rel="apple-touch-startup-image" href="img/app/splash.jpg" media="screen and (max-device-width: 320px)" />
+		<!-- startup image for web apps (640x920) -->
+		<link rel="apple-touch-startup-image" href="img/app/splash4.jpg" media="(max-device-width: 480px) and not (min-device-pixel-ratio: 2)" />
+		
         <link rel="apple-touch-icon" href="img/app/touch-icon-iphone.png" />
         <link rel="apple-touch-icon" sizes="72x72" href="img/app/touch-icon-ipad.png" />
         <link rel="apple-touch-icon" sizes="114x114" href="img/app/touch-icon-iphone4.jpg" />
@@ -55,11 +62,12 @@
             <p class="center desc">
                 A small game of turning tiles.<br />
                 <br />
-                Turn all tiles of the grid from grey to blue to complete the game.<br />
-                Start a new game by enter a numberbetween 3 and 10 and press play on tape.<br />
+                Make all the tiles of the grid transparent to complete the game.<br />
+                To start a new game, enter a number between 3 and 10 and press play on tape.<br />
                 <br />
-                This is a game that is available as a webapp for iPhone, to install, press the center button at the bottom and choose "Save to homescreen" or equivalent..<br />
-                <br />
+                <span id="web_only">This is a game that is available as a webapp for iPhone. So if you are here using an iPhone, 
+                you can install it by pressing the center button on the navbar at the bottom of your screen and choose "Save to homescreen" or equivalent..<br />
+                <br /></span>
                 Do notice that this game is in a state of pre-alfa release.<br />
                 <a href="mailto:jnao@jnao.me">mail me</a>
             </p>
