@@ -56,6 +56,9 @@
                 <br />
                 Turn all tiles of the grid from grey to blue to complete the game.<br />
                 Start a new game by enter a numberbetween 3 and 10 and press play on tape.<br />
+                <br />
+                This is a game that is available as a webapp for iPhone, to install, press the center button at the bottom and choose "Save to homescreen" or equivalent..<br />
+                <br />
                 Do notice that this game is in a state of pre-alfa release.
             </p>
         </header>

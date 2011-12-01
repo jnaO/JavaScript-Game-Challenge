@@ -123,7 +123,6 @@ nav {
 
 #main_menu input {
 	display: inline-block;
-	border-radius: 2px;
 	background: #07b;
 	color: hsl(210, 57%, 100%);
 	text-shadow: 1px 1px 1px hsl(0, 0%, 67%);
@@ -163,20 +162,6 @@ a:hover {
 
 /*  *   *   *   *   *   *   *    GAME SPECS    *   *   *   *   *   *   *   *   */
 
-
-button {
-    display: block;
-    margin: 0px auto 50px;
-    width: 206px;
-    background-image: -webkit-linear-gradient(top, hsl(30, 0%, 90%) 20%, hsl(0, 0%, 50%) 120%);
-    border-radius: 3px;
-    border: none;
-    box-shadow: 1px 1px 3px #333;
-    font: 24px bold "Josefin Sans";
-    color: black;
-    text-shadow: 1px 1px 1px hsl(0, 0%, 67%);
-    padding: 20px 10px;
-}
 
 #progressBar {
     display: block;
