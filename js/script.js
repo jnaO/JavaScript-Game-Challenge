@@ -43,7 +43,7 @@ $(document).ready(function(){
   }
 
   // Standalone mode
-  if (window.navigator.standalone) {
+  if ( window.navigator.standalone ) {
     // Do stuff in iPhone standalone mode
     $(".top").addClass('standAlone');
     $("#web_only").remove();
@@ -61,7 +61,7 @@ $(document).ready(function(){
 /*============================================================================*/
 /*============================================================================*/
 
-function GridGame (){
+function GridGame() {
 
   /** === * === * === * === * === * === * === * === * === * === * === * === * === * === * === * === * === * === * === * === **/
   /** === * === * === * === * === |                                                           | === * === * === * === * === **/
@@ -77,11 +77,11 @@ function GridGame (){
   var Grid = {
 
     // The grid
-    table:      document.getElementById("gamePlan"),
+    table: document.getElementById("gamePlan"),
 
 
     // Creates a grid that is 'tiles.total' by 'tiles.total'
-    create:     function(){
+    create: function() {
 
       log('I am a grid, with '+this.tiles.total+' tiles square');
 
@@ -90,11 +90,11 @@ function GridGame (){
       // 2. Append the cells into the row.
       // 3. Append the row into the gamePlan
       // Repeat until done.
-      for(var i = 0; i < this.tiles.total; i++){
+      for ( var i = 0; i < this.tiles.total; i++ ) {
         var row = $("<tr id='"+i+"' />");
 
         // Create the cells, append into current row
-        for(var ci = 0; ci < this.tiles.total; ci++) { // tiles
+        for ( var ci = 0; ci < this.tiles.total; ci++ ) { // tiles
           var tile = $("<td id='"+i+"_"+ci+"' class='greyTile' />");
           row.append(tile);
         }
@@ -110,7 +110,7 @@ function GridGame (){
       total: 0,
 
       // Calculate tiles to change
-      calculateChange: function (id) {
+      calculateChange: function(id) {
 
         // Split class name into two vars, and parse them into integers
         var idSplitArray = id.split('_'),
@@ -133,7 +133,7 @@ function GridGame (){
        * @param id String
        *      The id of the element on wich to change class
        */
-      changeTile: function(id){
+      changeTile: function(id) {
 
         var workingTile = $("#"+id);
 
@@ -194,7 +194,7 @@ function GridGame (){
         return numberOfTilesTurned;
       }, // <- end Grid.tiles.count()
 
-      tilesTurned: function(){
+      tilesTurned: function() {
 
         var blueTileArray = [],
             blueTiles;
@@ -225,15 +225,15 @@ function GridGame (){
 
   Progress = {
 
-    max:  0,
+    max: 0,
 
-    cleared:  0,
+    cleared: 0,
 
-    width:  30,
+    width: 30,
 
     clicks: (!!parseInt(localStorage.getItem('currentGameClicks'), 10)) ? parseInt(localStorage.getItem('currentGameClicks'), 10): 0,
 
-    bar:  undefined,
+    bar: undefined,
 
     // Creates a progressbar
     create: function() {
@@ -246,11 +246,11 @@ function GridGame (){
     }, //<- end create();
 
     // Updates the progressbar to match current tile count
-    update: function(){
+    update: function() {
 
       Progress.cleared = Grid.tiles.count();
 
-      if(Progress.bar){
+      if ( Progress.bar ) {
         var ctx = document.getElementById('progressBar').getContext("2d"),
 
         fWidth = (Progress.cleared / Progress.max) * (Progress.width);
@@ -278,7 +278,7 @@ function GridGame (){
   /** === * === * === * === * === * === * === * === * === * === * === * === * === * === * === * === * === * === * === * === **/
 
   // Game creates and destroys the game, indicate if a game is in progress and so on
-  Game   = {
+  Game = {
 
     // Removes all tiles inside the game, as well as the progressbar.
     destroy: function() {
@@ -356,9 +356,9 @@ function GridGame (){
 
 
 
-function log(msg){
+function log ( msg ) {
   if ( typeof console !== "undefined" && typeof console.log !== "undefined" ) {
-    console.log(msg);
+    console.log( msg );
   } else {
     // do nuthin
   }
